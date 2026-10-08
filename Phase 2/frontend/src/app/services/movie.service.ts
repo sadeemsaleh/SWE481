@@ -70,8 +70,6 @@ export class MovieService {
   getMovies(search: {
     page?: number;
     pageSize?: number;
-    genre?: number;
-    letter?: string | null;
     title?: string;
     year?: number | null;
     director?: string;

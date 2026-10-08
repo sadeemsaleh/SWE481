@@ -1,0 +1,85 @@
+<a
+        routerLink="/home"
+>
+    IMDB Store
+</a>
+<div class="d-flex gap-2">
+    <a routerLink="/home">Home</a>
+    <a routerLink="/movies">Movies</a>
+    <a
+            routerLink="/cart"
+    >
+        Cart
+    </a>
+    <button (click)="onLogout()">
+        Logout
+    </button>
+</div>
+
+<!-- Header -->
+<div>
+    <div>
+        <h1 >Shopping Cart</h1>
+    </div>
+</div>
+
+<div >
+    <!-- Empty State -->
+    <div
+            *ngIf="cartItems.length === 0"
+    >
+        <div >
+
+            <h4>Your cart is empty</h4>
+            <a
+                    routerLink="/movies"
+            >Browse Movies</a
+            >
+        </div>
+    </div>
+
+    <!-- Cart Items -->
+    <div
+            *ngIf="cartItems.length > 0"
+    >
+        <table>
+            <thead>
+            <tr>
+                <th>Movie</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of cartItems">
+                <td>{{ item.title }}</td>
+                <td>
+                    <button
+                            (click)="removeItem(item.movieId)"
+                    >
+                        Remove
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div
+        >
+            <button
+                    (click)="clearCart()"
+            >
+                Clear Cart
+            </button>
+            <a
+                    routerLink="/movies"
+            >
+                Back to Movies
+            </a>
+            <button
+                    (click)="proceedToCheckout()"
+            >
+                Checkout
+            </button>
+        </div>
+    </div>
+</div>

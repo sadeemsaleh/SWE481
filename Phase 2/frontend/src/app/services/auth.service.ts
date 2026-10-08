@@ -19,8 +19,8 @@ export class AuthService {
     return this.http.post<{ success: boolean; message: string }>(`${this.baseUrl}/api/v1/user/logout`, {});
   }
 
-  /** Checks whether the user is authenticated. Emits null (rather than erroring) if not. */
-  authenticate(): Observable<AuthUser | null> {
-    return this.http.get<AuthUser | null>(`${this.baseUrl}/api/v1/user/authenticate`);
+  /** Checks whether the user is authenticated. The backend responds 401 if not. */
+  authenticate(): Observable<AuthUser> {
+    return this.http.get<AuthUser>(`${this.baseUrl}/api/v1/user/authenticate`);
   }
 }

@@ -2,7 +2,7 @@ import { Injectable, inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { environment } from "../../environments/environment";
-import { Employee, TableMetadata } from "../models/models";
+import { Employee, ImportResult, TableMetadata } from "../models/models";
 
 @Injectable({ providedIn: "root" })
 export class DashboardService {
@@ -18,13 +18,13 @@ export class DashboardService {
   }
 
   /** Logs the current employee out. */
-  logout(): Observable<unknown> {
-    return this.http.post(`${this.baseUrl}/api/v1/dashboard/logout`, {});
+  logout(): Observable<{ success: boolean }> {
+    return this.http.post<{ success: boolean }>(`${this.baseUrl}/api/v1/dashboard/logout`, {});
   }
 
-  /** Checks whether the employee is authenticated. Emits null (rather than erroring) if not. */
-  authenticate(): Observable<Employee | null> {
-    return this.http.get<Employee | null>(
+  /** Checks whether the employee is authenticated. The backend responds 401 if not. */
+  authenticate(): Observable<Employee> {
+    return this.http.get<Employee>(
       `${this.baseUrl}/api/v1/dashboard/authenticate`,
     );
   }
@@ -62,14 +62,14 @@ export class DashboardService {
   }
 
   /** Uploads the three XML files (mains, actors, casts) to be imported. */
-  importXml(mains: File, actors: File, casts: File): Observable<any> {
+  importXml(mains: File, actors: File, casts: File): Observable<ImportResult> {
     const formData = new FormData();
     formData.append("mains", mains);
     formData.append("actors", actors);
     formData.append("casts", casts);
 
     // no Content-Type header — browser sets it with boundary
-    return this.http.post<any>(
+    return this.http.post<ImportResult>(
       `${this.baseUrl}/api/v1/dashboard/import`,
       formData,
     );
