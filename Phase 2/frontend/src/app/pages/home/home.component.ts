@@ -4,12 +4,13 @@ import { RouterModule, Router } from "@angular/router";
 import { BROWSE_LETTERS, GenresResponse } from "../../models/models";
 import { MovieService } from "../../services/movie.service";
 import { FormsModule } from "@angular/forms";
+import { NgIconComponent } from "@ng-icons/core";
 import { AuthService } from "../../services/auth.service";
 
 @Component({
   selector: "app-home",
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, NgIconComponent],
   templateUrl: "./home.component.html",
   styleUrl: "./home.component.css",
 })
@@ -59,7 +60,9 @@ export class HomeComponent implements OnInit {
   onKeyDown(event: KeyboardEvent) {}
 
   /** Handles a click on a suggestion. */
-  onSuggestionClick(s: { id: string; title: string }) {}
+  onSuggestionClick(s: { id: string; title: string }) {
+    this.router.navigate(["/movies", s.id]);
+  }
 
   /** Runs a full text search with the text in the search box. */
   onFulltextSearch() {}
@@ -68,7 +71,11 @@ export class HomeComponent implements OnInit {
   onSearch() {}
 
   /** Browses movies by genre. */
-  browseByGenre(genre: GenresResponse) {}
+  browseByGenre(genre: GenresResponse) {
+    this.router.navigate(["/movies"], {
+      queryParams: { genre: genre.id, genreText: genre.text },
+    });
+  }
 
   /** Clears the search form. */
   clearSearch() {}
