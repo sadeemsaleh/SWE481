@@ -1,0 +1,179 @@
+
+  <a
+    routerLink="/home"
+  >
+ IMDB Store
+  </a>
+  <div>
+    <a routerLink="/home" >Home</a>
+    <a routerLink="/movies" >Movies</a>
+    <a
+      routerLink="/cart"
+    >
+      Cart
+    </a>
+    <button (click)="onLogout()">
+      Logout
+    </button>
+  </div>
+
+
+<!-- Full Text Search with Autocomplete -->
+<div>
+  <div>
+    <h1>Discover Great Movies</h1>
+    <p>Search by title with instant suggestions</p>
+
+    <div>
+      <div>
+        <input
+          #searchInput
+          type="text"
+          [(ngModel)]="fulltextQuery"
+          (input)="onFulltextInput()"
+          (keydown)="onKeyDown($event)"
+          (keyup.enter)="onFulltextSearch()"
+          placeholder="Search movies..."
+          autocomplete="off"
+        />
+        <button
+          (click)="onFulltextSearch()"
+        >
+          Search
+        </button>
+      </div>
+
+      <!-- Autocomplete dropdown -->
+      <div
+        *ngIf="suggestions.length > 0"
+      >
+        <div
+          *ngFor="let s of suggestions; let i = index"
+          (click)="onSuggestionClick(s)"
+          [class.bg-secondary]="i === selectedIndex"
+          (mouseenter)="selectedIndex = i"
+        >
+          {{ s.title }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <p>
+    Advanced search, browse by genre or letter, and add to your cart
+  </p>
+
+  <div >
+    <form (ngSubmit)="onSearch()">
+      <div >
+        <div >
+          <label
+            for="title"
+            >Title</label
+          >
+          <input
+            id="title"
+            type="text"
+            name="title"
+            [(ngModel)]="searchForm.title"
+            placeholder="e.g. The Godfather"
+          />
+        </div>
+        <div >
+          <label
+            for="year"
+            >Year</label
+          >
+          <input
+            id="year"
+            type="number"
+            name="year"
+            [(ngModel)]="searchForm.year"
+            placeholder="e.g. 1994"
+            min="1800"
+            max="2100"
+          />
+        </div>
+        <div>
+          <label
+            for="director"
+            >Director</label
+          >
+          <input
+            id="director"
+            type="text"
+            name="director"
+            [(ngModel)]="searchForm.director"
+            placeholder="e.g. Nolan"
+          />
+        </div>
+        <div>
+          <label
+            for="star"
+            >Star</label
+          >
+          <input
+            id="star"
+            type="text"
+            name="star"
+            [(ngModel)]="searchForm.star"
+            placeholder="e.g. De Niro"
+          />
+        </div>
+        <div>
+          <button type="submit">
+            Search
+          </button>
+          <button
+            type="button"
+            (click)="clearSearch()"
+          >
+            Clear
+          </button>
+        </div>
+      </div>
+    </form>
+    <p>
+      All fields are optional — search by any combination.
+    </p>
+  </div>
+</div>
+
+<div>
+  <!-- Browse by Genre -->
+  <section>
+    <h2>
+      Browse by Genre
+    </h2>
+    <p *ngIf="genres.length === 0">
+      Loading genres...
+    </p>
+    <div *ngIf="genres.length > 0">
+      <button
+        *ngFor="let genre of genres"
+        type="button"
+        (click)="browseByGenre(genre)"
+      >
+        {{ genre.text }}
+      </button>
+    </div>
+  </section>
+
+  <!-- Browse by Letter -->
+  <section>
+    <h2>
+      Browse by Title
+    </h2>
+    <div>
+      <a
+        *ngFor="let letter of browseLetters"
+        [routerLink]="['/movies']"
+        [queryParams]="{ letter: letter }"
+        style="min-width: 2.4rem"
+      >
+        {{ letter }}
+      </a>
+    </div>
+  </section>
+</div>

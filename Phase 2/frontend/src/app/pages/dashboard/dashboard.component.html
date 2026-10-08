@@ -1,0 +1,334 @@
+<!-- Navbar -->
+<nav
+>
+  <span>Employee Dashboard</span>
+  <div>
+    <button (click)="onLogout()">
+      Logout
+    </button>
+  </div>
+</nav>
+
+<div>
+  <!-- Tabs -->
+  <ul>
+    <li>
+      <button
+        [class.active]="activeTab === 'star'"
+        (click)="activeTab = 'star'"
+      >
+        Insert Star
+      </button>
+    </li>
+    <li>
+      <button
+        [class.active]="activeTab === 'metadata'"
+        (click)="activeTab = 'metadata'"
+      >
+        Database Metadata
+      </button>
+    </li>
+    <li>
+      <button
+        [class.active]="activeTab === 'movie'"
+        (click)="activeTab = 'movie'"
+      >
+        Add Movie
+      </button>
+    </li>
+    <li>
+      <button
+        [class.active]="activeTab === 'import'"
+        (click)="activeTab = 'import'"
+      >
+        Import Movies Data
+      </button>
+    </li>
+  </ul>
+
+  <!-- Insert Star Tab -->
+  <div *ngIf="activeTab === 'star'">
+    <div>
+      <div>
+        <h5 >Insert New Star</h5>
+        <div >
+          <label
+            for="starName"
+          >
+            Name <span>*</span>
+          </label>
+          <input
+            id="starName"
+            type="text"
+            [(ngModel)]="starName"
+            placeholder="e.g. John Doe"
+          />
+        </div>
+        <div>
+          <label
+            for="birthYear"
+          >
+            Birth Year <span>(optional)</span>
+          </label>
+          <input
+            id="birthYear"
+            type="number"
+            [(ngModel)]="starBirthYear"
+            placeholder="e.g. 1990"
+            min="1800"
+            max="2100"
+          />
+        </div>
+
+        <div
+          *ngIf="starSuccessMessage"
+        >
+          {{ starSuccessMessage }}
+        </div>
+        <div
+          *ngIf="starErrorMessage"
+        >
+          {{ starErrorMessage }}
+        </div>
+
+        <button
+          (click)="insertStar()"
+        >
+          Insert Star
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Metadata Tab -->
+  <div *ngIf="activeTab === 'metadata'">
+    <div *ngIf="!metadataLoaded">
+      Loading metadata...
+    </div>
+    <div *ngFor="let table of metadata">
+      <div>
+        {{ table.table }}
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Column</th>
+            <th>Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let col of table.columns">
+            <td>{{ col.name }}</td>
+            <td>{{ col.type }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Movie Tab -->
+  <div *ngIf="activeTab === 'movie'">
+    <div>
+      <div>
+        <h5>Add New Movie</h5>
+
+        <div>
+          <label
+            for="movieTitle"
+          >
+            Title <span>*</span>
+          </label>
+          <input
+            id="movieTitle"
+            type="text"
+            [(ngModel)]="movie.title"
+            placeholder="e.g. Inception"
+          />
+        </div>
+
+        <div>
+          <label
+            for="movieYear"
+          >
+            Year <span>*</span>
+          </label>
+          <input
+            id="movieYear"
+            type="number"
+            [(ngModel)]="movie.year"
+            placeholder="e.g. 2010"
+            min="1800"
+            max="2100"
+          />
+        </div>
+
+        <div>
+          <label
+            for="movieDirector"
+          >
+            Director <span>*</span>
+          </label>
+          <input
+            id="movieDirector"
+            type="text"
+            [(ngModel)]="movie.director"
+            placeholder="e.g. Christopher Nolan"
+          />
+        </div>
+
+        <div>
+          <label
+            for="movieStar"
+          >
+            Star Name <span>*</span>
+          </label>
+          <input
+            id="movieStar"
+            type="text"
+            [(ngModel)]="movie.starName"
+            placeholder="e.g. Leonardo DiCaprio"
+          />
+        </div>
+
+        <div>
+          <label
+            for="movieGenre"
+          >
+            Genre <span>*</span>
+          </label>
+          <input
+            id="movieGenre"
+            type="text"
+            [(ngModel)]="movie.genreName"
+            placeholder="e.g. Sci-Fi"
+          />
+        </div>
+
+        <div
+          *ngIf="movieSuccessMessage"
+        >
+          {{ movieSuccessMessage }}
+        </div>
+        <div
+          *ngIf="movieErrorMessage"
+        >
+          {{ movieErrorMessage }}
+        </div>
+
+        <button
+          (click)="addMovie()"
+        >
+          Add Movie
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="activeTab === 'import'">
+    <div>
+      <div>
+        <h5>Import XML Data</h5>
+        <p>
+          Upload <code>mains243.xml</code>, <code>actors63.xml</code>, and
+          <code>casts124.xml</code> to bulk-import movies, stars, and genres.
+          Existing records are skipped automatically.
+        </p>
+
+        <div>
+          <label
+            for="mainsFile"
+          >
+            mains243.xml <span>*</span>
+          </label>
+          <input
+            id="mainsFile"
+            type="file"
+            accept=".xml"
+            (change)="onFileSelected($event, 'mains')"
+          />
+        </div>
+
+        <div>
+          <label
+            for="actorsFile"
+          >
+            actors63.xml <span>*</span>
+          </label>
+          <input
+            id="actorsFile"
+            type="file"
+            accept=".xml"
+            (change)="onFileSelected($event, 'actors')"
+          />
+        </div>
+
+        <div>
+          <label
+            for="castsFile"
+          >
+            casts124.xml <span>*</span>
+          </label>
+          <input
+            id="castsFile"
+            type="file"
+            accept=".xml"
+            (change)="onFileSelected($event, 'casts')"
+          />
+        </div>
+
+        <button
+          (click)="triggerImport()"
+          [disabled]="importing"
+        >
+          <span *ngIf="!importing">Run Import</span>
+          <span *ngIf="importing">Importing... this may take a while</span>
+        </button>
+
+        <div *ngIf="importResult">
+          <div>Import complete!</div>
+          <table>
+            <tbody>
+              <tr>
+                <td>Movies inserted</td>
+                <td>{{ importResult.moviesInserted }}</td>
+              </tr>
+              <tr>
+                <td>Movies skipped</td>
+                <td>{{ importResult.moviesSkipped }}</td>
+              </tr>
+              <tr>
+                <td>Genres inserted</td>
+                <td>{{ importResult.genresInserted }}</td>
+              </tr>
+              <tr>
+                <td>Stars inserted</td>
+                <td>{{ importResult.starsInserted }}</td>
+              </tr>
+              <tr>
+                <td>Stars skipped</td>
+                <td>{{ importResult.starsSkipped }}</td>
+              </tr>
+              <tr>
+                <td>Errors</td>
+                <td>{{ importResult.errorCount }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div *ngIf="importResult.errors?.length > 0">
+            <p>
+              Sample errors (first 20):
+            </p>
+            <ul
+            >
+              <li *ngFor="let err of importResult.errors">{{ err }}</li>
+            </ul>
+          </div>
+        </div>
+
+        <div *ngIf="importError">
+          {{ importError }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

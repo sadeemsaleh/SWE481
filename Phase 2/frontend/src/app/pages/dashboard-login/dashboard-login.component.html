@@ -1,0 +1,48 @@
+    <div>
+      <h1>Employee Dashboard</h1>
+      <p>
+        Sign in with your employee account
+      </p>
+    </div>
+    <div>
+      <form (ngSubmit)="onLogin()">
+        <div>
+          <label
+            for="email"
+            >Email</label
+          >
+          <input
+            id="email"
+            type="email"
+            name="email"
+            [(ngModel)]="email"
+            required
+            placeholder="employee@email.com"
+          />
+        </div>
+        <div>
+          <label
+            for="password"
+            >Password</label
+          >
+          <input
+            id="password"
+            type="password"
+            name="password"
+            [(ngModel)]="password"
+            required
+            placeholder="••••••••"
+          />
+        </div>
+        <div
+          *ngIf="errorMessage"
+        >
+          {{ errorMessage }}
+        </div>
+        <button
+          type="submit"
+        >
+          Sign In
+        </button>
+      </form>
+    </div>
