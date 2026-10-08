@@ -16,7 +16,7 @@ export class ConfirmationComponent {
     private router: Router,
   ) {}
 
-onLogout() {
-  this.authService.logout().subscribe();
-}
+  onLogout() {
+    this.authService.logout().subscribe();
+  }
 }

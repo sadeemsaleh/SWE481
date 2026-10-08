@@ -19,7 +19,10 @@ export class DashboardService {
 
   /** Logs the current employee out. */
   logout(): Observable<{ success: boolean }> {
-    return this.http.post<{ success: boolean }>(`${this.baseUrl}/api/v1/dashboard/logout`, {});
+    return this.http.post<{ success: boolean }>(
+      `${this.baseUrl}/api/v1/dashboard/logout`,
+      {},
+    );
   }
 
   /** Checks whether the employee is authenticated. The backend responds 401 if not. */

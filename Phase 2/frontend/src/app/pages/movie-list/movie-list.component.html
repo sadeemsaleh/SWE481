@@ -1,59 +1,38 @@
-
-  <a routerLink="/home"
-    ><ng-icon name="heroFilm" size="20"></ng-icon> IMDB Store</a
+<a routerLink="/home"
+  ><ng-icon name="heroFilm" size="20"></ng-icon> IMDB Store</a
+>
+<div>
+  <a routerLink="/home">Home</a>
+  <a routerLink="/movies">Movies</a>
+  <a routerLink="/cart"
+    ><ng-icon name="heroShoppingCart" size="14"></ng-icon> Cart</a
   >
-  <div>
-    <a routerLink="/home">Home</a>
-    <a routerLink="/movies">Movies</a>
-    <a routerLink="/cart"
-      ><ng-icon name="heroShoppingCart" size="14"></ng-icon> Cart</a
-    >
-    <button (click)="onLogout()">
-      Logout
-    </button>
-  </div>
-
+  <button (click)="onLogout()">Logout</button>
+</div>
 
 <!-- Page Header -->
 <div>
-  <div
-  >
+  <div>
     <div>
       <h1>Browse Movies</h1>
-      <span
-        *ngIf="filters.genreText"
-        >{{ filters.genreText }}</span
-      >
-      <span *ngIf="filters.letter"
-        >« {{ filters.letter }}</span
-      >
-      <span *ngIf="filters.fulltext">
-        "{{ filters.fulltext }}"
-      </span>
+      <span *ngIf="filters.genreText">{{ filters.genreText }}</span>
+      <span *ngIf="filters.letter">« {{ filters.letter }}</span>
+      <span *ngIf="filters.fulltext"> "{{ filters.fulltext }}" </span>
     </div>
 
     <div>
       <span>Sort:</span>
-      <select
-        [(ngModel)]="filters.sortBy"
-        (change)="onSortChange()"
-      >
+      <select [(ngModel)]="filters.sortBy" (change)="onSortChange()">
         <option value="title">Title</option>
         <option value="rating">Rating</option>
       </select>
-      <select
-        [(ngModel)]="filters.sortOrder"
-        (change)="onSortChange()"
-      >
+      <select [(ngModel)]="filters.sortOrder" (change)="onSortChange()">
         <option value="asc">Ascending</option>
         <option value="desc">Descending</option>
       </select>
 
       <span>Show:</span>
-      <select
-        [(ngModel)]="moviesPerPage"
-        (change)="onPageSizeChange()"
-      >
+      <select [(ngModel)]="moviesPerPage" (change)="onPageSizeChange()">
         <option [value]="10">10</option>
         <option [value]="25">25</option>
         <option [value]="50">50</option>
@@ -67,22 +46,16 @@
   <!-- Movie Grid -->
   <div>
     <div *ngFor="let movie of movies">
-      <div
-      >
+      <div>
         <div>
           <h5>
-            <a
-              [routerLink]="['/movies', movie.id]"
-            >
+            <a [routerLink]="['/movies', movie.id]">
               {{ movie.title }}
             </a>
           </h5>
 
           <div>
-            <span
-              >
-              {{ movie.rating }}</span
-            >
+            <span> {{ movie.rating }}</span>
             <span>{{ movie.year }}</span>
           </div>
 
@@ -103,11 +76,9 @@
           </div>
 
           <p>
-            <span >Stars:</span>
+            <span>Stars:</span>
             <ng-container *ngFor="let star of movie.stars; let last = last">
-              <a
-                [routerLink]="['/stars', star.starID]"
-                >{{ star.name }}</a
+              <a [routerLink]="['/stars', star.starID]">{{ star.name }}</a
               ><span *ngIf="!last">, </span>
             </ng-container>
           </p>
@@ -118,20 +89,14 @@
 
   <!-- Pagination -->
   <div>
-    <button
-      (click)="previousPage()"
-      [disabled]="currentPage === 1"
-    >
+    <button (click)="previousPage()" [disabled]="currentPage === 1">
       ← Previous
     </button>
     <span
       >Page <strong>{{ currentPage }}</strong> of
       <strong>{{ totalPages }}</strong></span
     >
-    <button
-      (click)="nextPage()"
-      [disabled]="currentPage === totalPages"
-    >
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">
       Next →
     </button>
   </div>

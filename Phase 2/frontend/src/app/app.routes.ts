@@ -22,7 +22,7 @@ export const routes: Routes = [
     path: "stars/:id",
     component: StarDetailComponent,
   },
-  { path: "cart", component: CartComponent},
+  { path: "cart", component: CartComponent },
   { path: "checkout", component: CheckoutComponent },
   {
     path: "confirmation",

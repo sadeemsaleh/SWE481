@@ -11,12 +11,18 @@ export class AuthService {
 
   /** Logs a user in with the given email and password. */
   login(email: string, password: string): Observable<AuthUser> {
-    return this.http.post<AuthUser>(`${this.baseUrl}/api/v1/user/login`, { email, password });
+    return this.http.post<AuthUser>(`${this.baseUrl}/api/v1/user/login`, {
+      email,
+      password,
+    });
   }
 
   /** Logs the current user out. */
   logout(): Observable<{ success: boolean; message: string }> {
-    return this.http.post<{ success: boolean; message: string }>(`${this.baseUrl}/api/v1/user/logout`, {});
+    return this.http.post<{ success: boolean; message: string }>(
+      `${this.baseUrl}/api/v1/user/logout`,
+      {},
+    );
   }
 
   /** Checks whether the user is authenticated. The backend responds 401 if not. */

@@ -4,13 +4,12 @@ import { RouterModule, Router } from "@angular/router";
 import { BROWSE_LETTERS, GenresResponse } from "../../models/models";
 import { MovieService } from "../../services/movie.service";
 import { FormsModule } from "@angular/forms";
-import { NgIconComponent } from "@ng-icons/core";
 import { AuthService } from "../../services/auth.service";
 
 @Component({
   selector: "app-home",
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, NgIconComponent],
+  imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: "./home.component.html",
   styleUrl: "./home.component.css",
 })
@@ -57,7 +56,10 @@ export class HomeComponent implements OnInit {
   }
 
   /** Handles keyboard navigation in the suggestions list. */
-  onKeyDown(event: KeyboardEvent) {}
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  onKeyDown(event: KeyboardEvent) {
+    // not implemented yet
+  }
 
   /** Handles a click on a suggestion. */
   onSuggestionClick(s: { id: string; title: string }) {
@@ -65,10 +67,14 @@ export class HomeComponent implements OnInit {
   }
 
   /** Runs a full text search with the text in the search box. */
-  onFulltextSearch() {}
+  onFulltextSearch() {
+    // not implemented yet
+  }
 
   /** Handles search form submission. */
-  onSearch() {}
+  onSearch() {
+    // not implemented yet
+  }
 
   /** Browses movies by genre. */
   browseByGenre(genre: GenresResponse) {
@@ -78,5 +84,7 @@ export class HomeComponent implements OnInit {
   }
 
   /** Clears the search form. */
-  clearSearch() {}
+  clearSearch() {
+    // not implemented yet
+  }
 }

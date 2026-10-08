@@ -1,57 +1,43 @@
+<div>
+  <p>Sign in to your account</p>
+</div>
+
+<!-- Form -->
+<div>
+  <form (ngSubmit)="onLogin()">
     <div>
-      <p>
-        Sign in to your account
-      </p>
+      <label for="email">Email</label>
+      <input
+        id="email"
+        type="email"
+        name="email"
+        [(ngModel)]="email"
+        required
+        placeholder="you@example.com"
+      />
     </div>
 
-    <!-- Form -->
     <div>
-      <form (ngSubmit)="onLogin()">
-        <div>
-          <label
-            for="email"
-            >Email</label
-          >
-          <input
-            id="email"
-            type="email"
-            name="email"
-            [(ngModel)]="email"
-            required
-            placeholder="you@example.com"
-          />
-        </div>
-
-        <div>
-          <label
-            for="password"
-            >Password</label
-          >
-          <input
-            id="password"
-            type="password"
-            name="password"
-            [(ngModel)]="password"
-            required
-            placeholder="••••••••"
-          />
-        </div>
-
-        <div
-          *ngIf="errorMessage"
-        >
-          {{ errorMessage }}
-        </div>
-
-        <button
-          type="submit"
-        >
-          Sign In
-        </button>
-      </form>
-      <div>
-        <a routerLink="/dashboard/login" class="text-secondary small">
-          Employee Dashboard →
-        </a>
-      </div>
+      <label for="password">Password</label>
+      <input
+        id="password"
+        type="password"
+        name="password"
+        [(ngModel)]="password"
+        required
+        placeholder="••••••••"
+      />
     </div>
+
+    <div *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+
+    <button type="submit">Sign In</button>
+  </form>
+  <div>
+    <a routerLink="/dashboard/login" class="text-secondary small">
+      Employee Dashboard →
+    </a>
+  </div>
+</div>

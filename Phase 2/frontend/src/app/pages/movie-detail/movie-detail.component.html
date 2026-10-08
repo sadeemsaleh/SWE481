@@ -1,82 +1,57 @@
-<a
-        routerLink="/home"
->
-    IMDB Store
-</a>
+<a routerLink="/home"> IMDB Store </a>
 <div class="d-flex gap-2">
-    <a routerLink="/home">Home</a>
-    <a routerLink="/movies" >Movies</a>
-    <a
-            routerLink="/cart"
-    >
-        Cart
-    </a>
-    <button (click)="onLogout()">
-        Logout
-    </button>
+  <a routerLink="/home">Home</a>
+  <a routerLink="/movies">Movies</a>
+  <a routerLink="/cart"> Cart </a>
+  <button (click)="onLogout()">Logout</button>
 </div>
 
 <ng-container *ngIf="movie">
-    <!-- Header -->
+  <!-- Header -->
+  <div>
     <div>
-        <div>
-            <a
-                    routerLink="/movies"
-            >
-                ← Back to Movies
-            </a>
-            <h1>{{ movie.title }}</h1>
-            <div>
-        <span
-        > {{ movie.rating }} /
-          10</span
-        >
-                <span>{{ movie.year }}</span>
-            </div>
-        </div>
+      <a routerLink="/movies"> ← Back to Movies </a>
+      <h1>{{ movie.title }}</h1>
+      <div>
+        <span> {{ movie.rating }} / 10</span>
+        <span>{{ movie.year }}</span>
+      </div>
     </div>
+  </div>
 
-    <!-- Content -->
+  <!-- Content -->
+  <div>
     <div>
+      <!-- Director / Genres -->
+      <div>
         <div>
-            <!-- Director / Genres -->
-            <div>
-                <div>
-                    <p>
-                        Director
-                    </p>
-                    <p>{{ movie.director }}</p>
-                </div>
-                <div>
-                    <p>Genres</p>
-                    <p>{{ genreNames }}</p>
-                </div>
-            </div>
-
-            <!-- Stars -->
-            <div>
-                <p>Stars</p>
-                <div>
-                    <a
-                            *ngFor="let star of movie.stars"
-                            [routerLink]="['/stars', star.starID]"
-                    >
-                        {{ star.name }}
-                    </a>
-                </div>
-            </div>
-
-            <!-- Add to Cart -->
-            <div>
-                <p>
-                    Add to Cart
-                </p>
-                <button
-                        (click)="addToCart()"
-                >
-                   Add to Cart
-                </button>
-            </div>
+          <p>Director</p>
+          <p>{{ movie.director }}</p>
         </div>
+        <div>
+          <p>Genres</p>
+          <p>{{ genreNames }}</p>
+        </div>
+      </div>
+
+      <!-- Stars -->
+      <div>
+        <p>Stars</p>
+        <div>
+          <a
+            *ngFor="let star of movie.stars"
+            [routerLink]="['/stars', star.starID]"
+          >
+            {{ star.name }}
+          </a>
+        </div>
+      </div>
+
+      <!-- Add to Cart -->
+      <div>
+        <p>Add to Cart</p>
+        <button (click)="addToCart()">Add to Cart</button>
+      </div>
     </div>
+  </div>
 </ng-container>

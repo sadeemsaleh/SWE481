@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
 import { DashboardService } from "../../services/dashboard.service";
-import { TableMetadata } from "../../models/models";
+import { ImportResult, TableMetadata } from "../../models/models";
 
 @Component({
   selector: "app-dashboard",
@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit {
   actorsFile: File | null = null;
   castsFile: File | null = null;
   importing = false;
-  importResult: any = null;
+  importResult: ImportResult | null = null;
   importError = "";
 
   constructor(
@@ -84,7 +84,10 @@ export class DashboardComponent implements OnInit {
   }
 
   /** Stores the file chosen in a file input as the mains, actors or casts file. */
-  onFileSelected(event: Event, type: "mains" | "actors" | "casts") {}
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  onFileSelected(event: Event, type: "mains" | "actors" | "casts") {
+    // not implemented yet
+  }
 
   /** Uploads the three selected XML files to be imported. */
   triggerImport() {

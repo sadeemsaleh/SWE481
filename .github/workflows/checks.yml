@@ -1,0 +1,42 @@
+name: Format and lint
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  backend-format:
+    name: Backend format (scalafmt)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: "Phase 2/backend"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+          cache: sbt
+      - uses: sbt/setup-sbt@v1
+      - name: Check Scala and sbt formatting
+        run: sbt scalafmtCheckAll scalafmtSbtCheck
+
+  frontend-checks:
+    name: Frontend format and lint
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: "Phase 2/frontend"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: "Phase 2/frontend/package-lock.json"
+      - run: npm ci
+      - name: Check formatting (prettier)
+        run: npm run format:check
+      - name: Lint (eslint)
+        run: npm run lint

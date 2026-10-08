@@ -1,51 +1,32 @@
-
-  <a
-    routerLink="/home"
-  >
-     IMDB Store
-  </a>
-  <div >
-    <a routerLink="/home" >Home</a>
-    <a routerLink="/movies" >Movies</a>
-    <a
-      routerLink="/cart"
-    >
-       Cart
-    </a>
-    <button (click)="onLogout()">
-      Logout
-    </button>
-  </div>
+<a routerLink="/home"> IMDB Store </a>
+<div>
+  <a routerLink="/home">Home</a>
+  <a routerLink="/movies">Movies</a>
+  <a routerLink="/cart"> Cart </a>
+  <button (click)="onLogout()">Logout</button>
+</div>
 
 <!-- Header -->
-<div >
+<div>
   <div class="container">
-    <a
-      routerLink="/movies"
-    >
-      ← Back to Movies
-    </a>
-    <h1 >{{ star.name }}</h1>
-    <p >Born: {{ star.birthYear }}</p>
+    <a routerLink="/movies"> ← Back to Movies </a>
+    <h1>{{ star.name }}</h1>
+    <p>Born: {{ star.birthYear }}</p>
   </div>
 </div>
 
 <!-- Filmography -->
-<div >
-  <div >
-    <div >
-      <p >
-        Filmography
-      </p>
+<div>
+  <div>
+    <div>
+      <p>Filmography</p>
     </div>
 
     <div
       *ngFor="let movie of star.movies; let last = last"
       [class.border-bottom]="!last"
     >
-      <a
-        [routerLink]="['/movies', movie.id]"
-      >
+      <a [routerLink]="['/movies', movie.id]">
         {{ movie.title }}
       </a>
     </div>

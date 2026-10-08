@@ -1,11 +1,8 @@
 <!-- Navbar -->
-<nav
->
+<nav>
   <span>Employee Dashboard</span>
   <div>
-    <button (click)="onLogout()">
-      Logout
-    </button>
+    <button (click)="onLogout()">Logout</button>
   </div>
 </nav>
 
@@ -50,13 +47,9 @@
   <div *ngIf="activeTab === 'star'">
     <div>
       <div>
-        <h5 >Insert New Star</h5>
-        <div >
-          <label
-            for="starName"
-          >
-            Name <span>*</span>
-          </label>
+        <h5>Insert New Star</h5>
+        <div>
+          <label for="starName"> Name <span>*</span> </label>
           <input
             id="starName"
             type="text"
@@ -65,11 +58,7 @@
           />
         </div>
         <div>
-          <label
-            for="birthYear"
-          >
-            Birth Year <span>(optional)</span>
-          </label>
+          <label for="birthYear"> Birth Year <span>(optional)</span> </label>
           <input
             id="birthYear"
             type="number"
@@ -80,31 +69,21 @@
           />
         </div>
 
-        <div
-          *ngIf="starSuccessMessage"
-        >
+        <div *ngIf="starSuccessMessage">
           {{ starSuccessMessage }}
         </div>
-        <div
-          *ngIf="starErrorMessage"
-        >
+        <div *ngIf="starErrorMessage">
           {{ starErrorMessage }}
         </div>
 
-        <button
-          (click)="insertStar()"
-        >
-          Insert Star
-        </button>
+        <button (click)="insertStar()">Insert Star</button>
       </div>
     </div>
   </div>
 
   <!-- Metadata Tab -->
   <div *ngIf="activeTab === 'metadata'">
-    <div *ngIf="!metadataLoaded">
-      Loading metadata...
-    </div>
+    <div *ngIf="!metadataLoaded">Loading metadata...</div>
     <div *ngFor="let table of metadata">
       <div>
         {{ table.table }}
@@ -133,11 +112,7 @@
         <h5>Add New Movie</h5>
 
         <div>
-          <label
-            for="movieTitle"
-          >
-            Title <span>*</span>
-          </label>
+          <label for="movieTitle"> Title <span>*</span> </label>
           <input
             id="movieTitle"
             type="text"
@@ -147,11 +122,7 @@
         </div>
 
         <div>
-          <label
-            for="movieYear"
-          >
-            Year <span>*</span>
-          </label>
+          <label for="movieYear"> Year <span>*</span> </label>
           <input
             id="movieYear"
             type="number"
@@ -163,11 +134,7 @@
         </div>
 
         <div>
-          <label
-            for="movieDirector"
-          >
-            Director <span>*</span>
-          </label>
+          <label for="movieDirector"> Director <span>*</span> </label>
           <input
             id="movieDirector"
             type="text"
@@ -177,11 +144,7 @@
         </div>
 
         <div>
-          <label
-            for="movieStar"
-          >
-            Star Name <span>*</span>
-          </label>
+          <label for="movieStar"> Star Name <span>*</span> </label>
           <input
             id="movieStar"
             type="text"
@@ -191,11 +154,7 @@
         </div>
 
         <div>
-          <label
-            for="movieGenre"
-          >
-            Genre <span>*</span>
-          </label>
+          <label for="movieGenre"> Genre <span>*</span> </label>
           <input
             id="movieGenre"
             type="text"
@@ -204,22 +163,14 @@
           />
         </div>
 
-        <div
-          *ngIf="movieSuccessMessage"
-        >
+        <div *ngIf="movieSuccessMessage">
           {{ movieSuccessMessage }}
         </div>
-        <div
-          *ngIf="movieErrorMessage"
-        >
+        <div *ngIf="movieErrorMessage">
           {{ movieErrorMessage }}
         </div>
 
-        <button
-          (click)="addMovie()"
-        >
-          Add Movie
-        </button>
+        <button (click)="addMovie()">Add Movie</button>
       </div>
     </div>
   </div>
@@ -235,11 +186,7 @@
         </p>
 
         <div>
-          <label
-            for="mainsFile"
-          >
-            mains243.xml <span>*</span>
-          </label>
+          <label for="mainsFile"> mains243.xml <span>*</span> </label>
           <input
             id="mainsFile"
             type="file"
@@ -249,11 +196,7 @@
         </div>
 
         <div>
-          <label
-            for="actorsFile"
-          >
-            actors63.xml <span>*</span>
-          </label>
+          <label for="actorsFile"> actors63.xml <span>*</span> </label>
           <input
             id="actorsFile"
             type="file"
@@ -263,11 +206,7 @@
         </div>
 
         <div>
-          <label
-            for="castsFile"
-          >
-            casts124.xml <span>*</span>
-          </label>
+          <label for="castsFile"> casts124.xml <span>*</span> </label>
           <input
             id="castsFile"
             type="file"
@@ -276,10 +215,7 @@
           />
         </div>
 
-        <button
-          (click)="triggerImport()"
-          [disabled]="importing"
-        >
+        <button (click)="triggerImport()" [disabled]="importing">
           <span *ngIf="!importing">Run Import</span>
           <span *ngIf="importing">Importing... this may take a while</span>
         </button>
@@ -314,12 +250,9 @@
               </tr>
             </tbody>
           </table>
-          <div *ngIf="importResult.errors?.length > 0">
-            <p>
-              Sample errors (first 20):
-            </p>
-            <ul
-            >
+          <div *ngIf="importResult.errors.length > 0">
+            <p>Sample errors (first 20):</p>
+            <ul>
               <li *ngFor="let err of importResult.errors">{{ err }}</li>
             </ul>
           </div>

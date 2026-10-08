@@ -2,14 +2,13 @@ import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
-import { NgIconComponent } from "@ng-icons/core";
 import { CartService } from "../../services/cart.service";
 import { AuthService } from "../../services/auth.service";
 
 @Component({
   selector: "app-checkout",
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule, NgIconComponent],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: "./checkout.component.html",
   styleUrl: "./checkout.component.css",
 })

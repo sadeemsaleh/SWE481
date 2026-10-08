@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule, Router } from "@angular/router";
 import { FormsModule } from "@angular/forms";
-import { NgIconComponent } from "@ng-icons/core";
 import { AuthService } from "../../services/auth.service";
 import { CartService } from "../../services/cart.service";
 import { CartItem } from "../../models/models";
@@ -10,7 +9,7 @@ import { CartItem } from "../../models/models";
 @Component({
   selector: "app-cart",
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, NgIconComponent],
+  imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: "./cart.component.html",
   styleUrl: "./cart.component.css",
 })

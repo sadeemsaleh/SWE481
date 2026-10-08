@@ -1,39 +1,24 @@
-
-  <a
-    routerLink="/home"
-  >
-IMDB Store
-  </a>
-  <div >
-    <a routerLink="/home" >Home</a>
-    <a routerLink="/movies" >Movies</a>
-    <a
-      routerLink="/cart"
-    >
- Cart
-    </a>
-    <button (click)="onLogout()">
-      Logout
-    </button>
-  </div>
+<a routerLink="/home"> IMDB Store </a>
+<div>
+  <a routerLink="/home">Home</a>
+  <a routerLink="/movies">Movies</a>
+  <a routerLink="/cart"> Cart </a>
+  <button (click)="onLogout()">Logout</button>
+</div>
 
 <!-- Header -->
-<div >
+<div>
   <div class="container">
-    <h1 >Payment Information</h1>
+    <h1>Payment Information</h1>
   </div>
 </div>
 
-<div >
-  <div >
+<div>
+  <div>
     <div>
       <form (ngSubmit)="onSubmit()">
-        <div >
-          <label
-            for="firstName"
-          >
-            First Name
-          </label>
+        <div>
+          <label for="firstName"> First Name </label>
           <input
             id="firstName"
             type="text"
@@ -44,12 +29,8 @@ IMDB Store
           />
         </div>
 
-        <div >
-          <label
-            for="lastName"
-          >
-            Last Name
-          </label>
+        <div>
+          <label for="lastName"> Last Name </label>
           <input
             id="lastName"
             type="text"
@@ -61,11 +42,7 @@ IMDB Store
         </div>
 
         <div>
-          <label
-            for="cardNumber"
-          >
-            Card Number
-          </label>
+          <label for="cardNumber"> Card Number </label>
           <input
             id="cardNumber"
             type="text"
@@ -76,12 +53,8 @@ IMDB Store
           />
         </div>
 
-        <div >
-          <label
-            for="expiration"
-          >
-            Expiration Date
-          </label>
+        <div>
+          <label for="expiration"> Expiration Date </label>
           <input
             id="expiration"
             type="date"
@@ -90,18 +63,12 @@ IMDB Store
             required
           />
         </div>
-        <div
-          *ngIf="errorMessage"
-        >
+        <div *ngIf="errorMessage">
           {{ errorMessage }}
         </div>
 
-        <div >
-          <button
-            type="submit"
-          >
-            Confirm Payment
-          </button>
+        <div>
+          <button type="submit">Confirm Payment</button>
           <a routerLink="/cart">Back</a>
         </div>
       </form>

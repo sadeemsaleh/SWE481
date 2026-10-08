@@ -1,22 +1,10 @@
-
-  <a
-    routerLink="/home"
-  >
- IMDB Store
-  </a>
-  <div>
-    <a routerLink="/home" >Home</a>
-    <a routerLink="/movies" >Movies</a>
-    <a
-      routerLink="/cart"
-    >
-      Cart
-    </a>
-    <button (click)="onLogout()">
-      Logout
-    </button>
-  </div>
-
+<a routerLink="/home"> IMDB Store </a>
+<div>
+  <a routerLink="/home">Home</a>
+  <a routerLink="/movies">Movies</a>
+  <a routerLink="/cart"> Cart </a>
+  <button (click)="onLogout()">Logout</button>
+</div>
 
 <!-- Full Text Search with Autocomplete -->
 <div>
@@ -36,20 +24,16 @@
           placeholder="Search movies..."
           autocomplete="off"
         />
-        <button
-          (click)="onFulltextSearch()"
-        >
-          Search
-        </button>
+        <button (click)="onFulltextSearch()">Search</button>
       </div>
 
       <!-- Autocomplete dropdown -->
-      <div
-        *ngIf="suggestions.length > 0"
-      >
+      <div *ngIf="suggestions.length > 0">
         <div
           *ngFor="let s of suggestions; let i = index"
+          tabindex="0"
           (click)="onSuggestionClick(s)"
+          (keydown.enter)="onSuggestionClick(s)"
           [class.bg-secondary]="i === selectedIndex"
           (mouseenter)="selectedIndex = i"
         >
@@ -60,18 +44,13 @@
   </div>
 </div>
 <div>
-  <p>
-    Advanced search, browse by genre or letter, and add to your cart
-  </p>
+  <p>Advanced search, browse by genre or letter, and add to your cart</p>
 
-  <div >
+  <div>
     <form (ngSubmit)="onSearch()">
-      <div >
-        <div >
-          <label
-            for="title"
-            >Title</label
-          >
+      <div>
+        <div>
+          <label for="title">Title</label>
           <input
             id="title"
             type="text"
@@ -80,11 +59,8 @@
             placeholder="e.g. The Godfather"
           />
         </div>
-        <div >
-          <label
-            for="year"
-            >Year</label
-          >
+        <div>
+          <label for="year">Year</label>
           <input
             id="year"
             type="number"
@@ -96,10 +72,7 @@
           />
         </div>
         <div>
-          <label
-            for="director"
-            >Director</label
-          >
+          <label for="director">Director</label>
           <input
             id="director"
             type="text"
@@ -109,10 +82,7 @@
           />
         </div>
         <div>
-          <label
-            for="star"
-            >Star</label
-          >
+          <label for="star">Star</label>
           <input
             id="star"
             type="text"
@@ -122,33 +92,20 @@
           />
         </div>
         <div>
-          <button type="submit">
-            Search
-          </button>
-          <button
-            type="button"
-            (click)="clearSearch()"
-          >
-            Clear
-          </button>
+          <button type="submit">Search</button>
+          <button type="button" (click)="clearSearch()">Clear</button>
         </div>
       </div>
     </form>
-    <p>
-      All fields are optional — search by any combination.
-    </p>
+    <p>All fields are optional — search by any combination.</p>
   </div>
 </div>
 
 <div>
   <!-- Browse by Genre -->
   <section>
-    <h2>
-      Browse by Genre
-    </h2>
-    <p *ngIf="genres.length === 0">
-      Loading genres...
-    </p>
+    <h2>Browse by Genre</h2>
+    <p *ngIf="genres.length === 0">Loading genres...</p>
     <div *ngIf="genres.length > 0">
       <button
         *ngFor="let genre of genres"
@@ -162,9 +119,7 @@
 
   <!-- Browse by Letter -->
   <section>
-    <h2>
-      Browse by Title
-    </h2>
+    <h2>Browse by Title</h2>
     <div>
       <a
         *ngFor="let letter of browseLetters"

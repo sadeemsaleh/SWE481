@@ -4,14 +4,13 @@ import { RouterModule, ActivatedRoute, Router } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 import { MovieService } from "../../services/movie.service";
 import { MovieDetailResponse } from "../../models/models";
-import { NgIconComponent } from "@ng-icons/core";
 import { AuthService } from "../../services/auth.service";
 import { CartService } from "../../services/cart.service";
 
 @Component({
   selector: "app-movie-detail",
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, NgIconComponent],
+  imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: "./movie-detail.component.html",
   styleUrl: "./movie-detail.component.css",
 })
@@ -46,6 +45,7 @@ export class MovieDetailComponent implements OnInit {
   }
 
   /** The names of the movie's genres, separated by commas. */
+  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
   get genreNames(): string {
     return "";
   }

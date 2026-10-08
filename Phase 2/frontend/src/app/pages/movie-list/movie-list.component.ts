@@ -56,10 +56,14 @@ export class MovieListComponent implements OnInit {
   }
 
   /** Handles a change of the sort field or order. */
-  onSortChange() {}
+  onSortChange() {
+    // not implemented yet
+  }
 
   /** Handles a change of the page size. */
-  onPageSizeChange() {}
+  onPageSizeChange() {
+    // not implemented yet
+  }
 
   /** Loads the movies matching the current filters (full text, genre, letter or search). */
   loadMovies() {
@@ -106,8 +110,12 @@ export class MovieListComponent implements OnInit {
   }
 
   /** Goes to the previous page. */
-  previousPage() {}
+  previousPage() {
+    // not implemented yet
+  }
 
   /** Goes to the next page. */
-  nextPage() {}
+  nextPage() {
+    // not implemented yet
+  }
 }
