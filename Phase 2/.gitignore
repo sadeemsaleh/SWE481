@@ -1,0 +1,32 @@
+# Play Framework & sbt
+target/
+logs/
+dist/
+project/target/
+project/project/
+lib_managed/
+src_managed/
+RUNNING_PID
+.history
+
+# Metals (Scala LSP)
+.metals/
+.bloop/
+metals.sbt
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# MacOS
+.DS_Store
+
+# Logs
+*.log
+/frontend/.vscode
+
+/frontend/node_modules/
+/frontend/.angular/
+backend/.bsp/

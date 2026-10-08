@@ -1,0 +1,33 @@
+GET     /                                  controllers.HomeController.index
+GET     /api                               controllers.HomeController.index
+
+#User-related API
+POST    /api/v1/user/login                 controllers.UserController.login()
+POST    /api/v1/user/logout                controllers.UserController.logout()
+GET     /api/v1/user/authenticate          controllers.UserController.authenticate()
+
+#Movies-related API
+POST   /api/v1/movie/search               controllers.MovieController.search()
+GET    /api/v1/movie/movie/:movieID       controllers.MovieController.movieDetail(movieID: String)
+GET    /api/v1/movie/genres               controllers.MovieController.getGenres()
+GET    /api/v1/movie/genre/:genre         controllers.MovieController.moviesByGenre(genre: String)
+GET    /api/v1/movie/title/:title         controllers.MovieController.moviesByTitle(title: String)
+GET    /api/v1/movie/star/:starID         controllers.MovieController.starDetail(starID: String)
+GET     /api/v1/movie/fulltext             controllers.MovieController.fullTextSearch()
+GET     /api/v1/movie/autocomplete         controllers.MovieController.autocomplete()
+
+#Cart-related API
+GET     /api/v1/cart                        controllers.CartController.view()
+POST    /api/v1/cart                        controllers.CartController.add()
+POST    /api/v1/cart/checkout               controllers.CartController.checkout()
+DELETE  /api/v1/cart/:movieID               controllers.CartController.delete(movieID: String)
+DELETE  /api/v1/cart                        controllers.CartController.clear()
+
+# Dashboard API
+POST    /api/v1/dashboard/login            controllers.DashboardController.login()
+POST    /api/v1/dashboard/logout           controllers.DashboardController.logout()
+GET     /api/v1/dashboard/authenticate     controllers.DashboardController.authenticate()
+POST    /api/v1/dashboard/star             controllers.DashboardController.insertStar()
+GET     /api/v1/dashboard/metadata         controllers.DashboardController.getMetadata()
+POST    /api/v1/dashboard/movie           controllers.DashboardController.addMovie()
+POST    /api/v1/dashboard/import          controllers.DashboardController.importXml()

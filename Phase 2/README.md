@@ -12,31 +12,22 @@ The repository is to host the code of a web application that browses and searche
    ```bash
    sbt run
    ```
-3. Access the backend at: http://localhost:9000/
+3. Access the backend at: http://localhost:9000/   
 
 ### Formatting and linting
 Before committing any backend changes, make sure to format the code:
-```bash
-sbt scalafmtAll scalafmtSbt
-```
+    ```
+    sbt scalafmtAll scalafmtSbt
+    ```
 ### Connecting to database
 You need to change the database user and password to connect to the database
    ```bash
    cd conf
    ```
-Change the values of `db.default.username` and `db.default.password` in the `application.conf` file to your specs.
+Change the values of `db.default.username` and `db.default.password` in the `application.conf` file to your specs. 
 
 ### Updating database schema
-Whenever the database schema changes, regenerate the JOOQ code:
-
-1. Update database credentials in `build.sbt`:
-   ```xml
-   <user>your-username</user>
-   <password>your-password</password>
-   ```
-   Also update the database name in the <url> tag if necessary.
-
-3. Run the JOOQ code generation:
+Whenever the database schema changes, regenerate the JOOQ code: 
    ```bash
    sbt jooqCodegen
    ```
@@ -55,7 +46,7 @@ Whenever the database schema changes, regenerate the JOOQ code:
    ```bash
    ng serve
    ```
-4. Access the backend at: http://localhost:4200/
+4. Access the backend at: http://localhost:4200/   
 
 ### Formatting and linting
 Before committing any frontend changes, run:
